@@ -3,19 +3,18 @@
 
 int main()
 {
-    char c;
-    char may;
+    char c, may;
     int n;
 
     do
     {
         n = read(STDIN_FILENO, &c, 1);
         may = toupper(c);
-        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+        if (may == 'A' || may == 'E' || may == 'I' || may == 'O' || may == 'U')
         {
-            may = '1';
+            c = '1';
         }
-        write(STDOUT_FILENO, &may, 1);
+        write(STDOUT_FILENO, &c, 1);
     }
     while (n != 0);
     return 0;
