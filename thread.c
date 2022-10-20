@@ -1,6 +1,8 @@
 #include <pthread.h>
 #include <stdio.h>
 
+#define NUM_THREADS 100
+
 typedef struct thread_Data
 {
     int threadId;
@@ -18,14 +20,16 @@ void *holaMundo(void *arg)
 
 int main()
 {
-    for (int i = 0; i < 100; ++i)
+    ThreadData threadData[NUM_THREADS];
+    for (int i = 0; i < NUM_THREADS; ++i)
     {
-        ThreadData myData;
         pthread_t threadId;
-        myData.threadId = i;
-        pthread_create(&threadId, NULL, holaMundo, (void *) &myData);
+        threadData[i].threadId = i;
+        pthread_create(&threadId, NULL, holaMundo, (void *) &threadData[i]);
     }
     pthread_exit(NULL);
     printf("NUNCAA LLEGA");
     return 0;
 }
+
+// gcc -o thread thread.c -lpthread && ./thread
